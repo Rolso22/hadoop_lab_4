@@ -10,7 +10,7 @@ public class AkkaApp {
         );
         storeActor.tell(
                 new ResultActor().StoreMessage("test");
-                ActorRef.noSender();
+                ActorRef.noSender()
         );
     }
 }
