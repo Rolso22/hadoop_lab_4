@@ -14,7 +14,7 @@ public class ResultActor extends AbstractActor {
                 .build();
     }
 
-    public Object StoreMessage(String test) {
-        return test.toUpperCase(Locale.ROOT);
+    public String getMessage() {
+        return ;
     }
 }

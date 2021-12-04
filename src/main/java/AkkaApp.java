@@ -8,6 +8,6 @@ public class AkkaApp {
         ActorRef storeActor = system.actorOf(Props.create(ResultActor.class)
         );
         storeActor.tell(Props.create(ResultActor.class), ActorRef.noSender());
-
+        String answer = storeActor.getMessage();
     }
 }
