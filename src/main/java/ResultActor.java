@@ -6,6 +6,10 @@ public class ResultActor extends AbstractActor {
 
     private String str;
 
+    public ResultActor(String str) {
+        this.str = str;
+    }
+
     @Override
     public Receive createReceive() {
         System.out.println("HERE");
@@ -14,7 +18,4 @@ public class ResultActor extends AbstractActor {
                 .build();
     }
 
-    public String getMessage() {
-        return ;
-    }
 }
