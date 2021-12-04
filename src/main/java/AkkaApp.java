@@ -7,7 +7,7 @@ public class AkkaApp {
         ActorSystem system = ActorSystem.create("test");
         ActorRef storeActor = system.actorOf(Props.create(ResultActor.class)
         );
-        storeActor.tell("test", ActorRef.noSender());
-
+        storeActor.tell(Props.create(ResultActor.class), ActorRef.noSender());
+        
     }
 }
