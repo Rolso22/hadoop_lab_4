@@ -12,7 +12,7 @@ public class ResultActor extends AbstractActor {
 
     @Override
     public Receive createReceive() {
-        System.out.println("HERE");
+        System.out.println(str);
         return receiveBuilder()
                 .match(String.class, s -> getSender().tell(s.toUpperCase(Locale.ROOT), self()))
                 .build();
