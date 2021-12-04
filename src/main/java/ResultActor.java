@@ -6,7 +6,8 @@ public class ResultActor extends AbstractActor {
 
     @Override
     public Receive createReceive() {
-        return receiveBuilder().build()
+        return receiveBuilder()
+                .match()
     }
 
     public Object StoreMessage(String test) {
