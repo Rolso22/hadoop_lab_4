@@ -6,4 +6,8 @@ public class ResultActor extends AbstractActor {
     public Receive createReceive() {
         return null;
     }
+
+    public Object StoreMessage(String test, String test1) {
+
+    }
 }

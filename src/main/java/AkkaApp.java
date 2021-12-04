@@ -1,9 +1,16 @@
 import akka.actor.ActorRef;
+import akka.actor.ActorSystem;
 import akka.actor.Props;
 
 public class AkkaApp {
     public static void main(String[] args) {
-        Props props = Props.create(ResultActor.class);
-        ActorRef storeActor = system.actorOf(props);
+        ActorSystem system = ActorSystem.create("test");
+        ActorRef storeActor = system.actorOf(
+                Props.create(ResultActor.class)
+        );
+        storeActor.tell(
+                new ResultActor().StoreMessage("test", "test"),
+                ActorRef.noSender()
+        );
     }
 }
