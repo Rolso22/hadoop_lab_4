@@ -4,6 +4,8 @@ import java.util.Locale;
 
 public class ResultActor extends AbstractActor {
 
+    private String str;
+
     @Override
     public Receive createReceive() {
         System.out.println("HERE");
