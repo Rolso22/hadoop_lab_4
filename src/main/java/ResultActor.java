@@ -7,7 +7,7 @@ public class ResultActor extends AbstractActor {
         return null;
     }
 
-    public Object StoreMessage(String test, String test1) {
+    public Object StoreMessage(String test) {
 
     }
 }
