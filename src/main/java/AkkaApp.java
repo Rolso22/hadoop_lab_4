@@ -5,7 +5,7 @@ import akka.actor.Props;
 public class AkkaApp {
     public static void main(String[] args) {
         ActorSystem system = ActorSystem.create("test");
-        ActorRef storeActor = system.actorOf(Props.create(ResultActor.class), "test");
+        ActorRef storeActor = system.actorOf(Props.create(ResultActor.class, () -> ), "test");
         storeActor.tell(Props.create(ResultActor.class), ActorRef.noSender());
         String answer = storeActor.getMessage();
     }
