@@ -53,8 +53,8 @@ public class AkkaApp {
 
     private Route createRoute() {
         return route(
-                get(() -> parameter( -> {
-                    Future<String> result = Patterns.ask(router, new GetRequest())
+                get(() -> parameter("packageId" (id) -> {
+                    Future<String> result = Patterns.ask(router, new GetRequest(id))
                     return completeOKWithFuture(result, Jackson.marshaller());
                 })),
                 post(() -> {
