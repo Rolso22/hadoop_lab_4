@@ -4,6 +4,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class PostRequest {
     @JsonProperty("packageId")
-    private final String packageId;
+    public String packageId;
+    @JsonProperty("packageId")
+    public String packageId;
+    @JsonProperty("packageId")
+    public String packageId;
+    
+
 
 }
