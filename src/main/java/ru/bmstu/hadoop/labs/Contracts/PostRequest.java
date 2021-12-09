@@ -9,7 +9,8 @@ public class PostRequest {
     public String jsScript;
     @JsonProperty("functionName")
     public String fnName;
-    
+    @JsonProperty("test")
+    public String fnName;
 
 
 
