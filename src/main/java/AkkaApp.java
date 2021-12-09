@@ -12,13 +12,14 @@ import akka.http.javadsl.server.Route;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
 
+import java.io.IOException;
 import java.util.concurrent.CompletionStage;
 
 public class AkkaApp {
 
     public AkkaApp() {}
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         ActorSystem system = ActorSystem.create("JSTesting");
 //        ActorRef actor = system.actorOf(Props.create(StoreActor.class));
 //        actor.tell("test", ActorRef.noSender());
@@ -41,7 +42,7 @@ public class AkkaApp {
 
     private Route createRoute() {
         return route(
-                
+
         )
     }
 }
