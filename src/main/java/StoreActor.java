@@ -1,6 +1,5 @@
 import akka.actor.AbstractActor;
 import akka.japi.pf.ReceiveBuilder;
-import java.util.Locale;
 
 public class StoreActor extends AbstractActor {
 
