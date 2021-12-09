@@ -1,3 +1,5 @@
+package 
+
 import akka.NotUsed;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
@@ -19,6 +21,7 @@ import java.io.IOException;
 import java.util.concurrent.CompletionStage;
 
 import static akka.http.javadsl.server.Directives.*;
+import
 
 public class AkkaApp {
 
@@ -51,7 +54,7 @@ public class AkkaApp {
     private Route createRoute() {
         return route(
                 get(() -> {
-                    Future<String> result = Patterns.ask(router, )
+                    Future<String> result = Patterns.ask(router, new )
                     return completeOKWithFuture(result, Jackson.marshaller());
                 }),
                 post(() -> {

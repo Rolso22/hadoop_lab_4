@@ -6,4 +6,8 @@ public class GetRequest {
     public GetRequest(String packageId) {
         this.packageId = packageId;
     }
+
+    public String getPackageId() {
+        return packageId;
+    }
 }
