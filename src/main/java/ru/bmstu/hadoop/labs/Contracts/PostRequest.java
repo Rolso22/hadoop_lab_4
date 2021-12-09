@@ -14,6 +14,19 @@ public class PostRequest {
     @JsonProperty("tests")
     public ArrayList<Object> tests;
 
+    public String getPackageId() {
+        return packageId;
+    }
 
+    public String getJsScript() {
+        return jsScript;
+    }
 
+    public String getFnName() {
+        return fnName;
+    }
+
+    public ArrayList<Object> getTests() {
+        return tests;
+    }
 }
