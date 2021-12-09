@@ -1,19 +1,25 @@
 package ru.bmstu.hadoop.labs;
 
 import akka.actor.AbstractActor;
+import akka.actor.ActorRef;
+import akka.actor.Props;
 import akka.japi.pf.ReceiveBuilder;
 import ru.bmstu.hadoop.labs.Contracts.GetRequest;
 
 public class RouteActor extends AbstractActor {
 
+    private static ActorRef storeActor;
+    private static ActorRef executeActor;
+
     public RouteActor() {
-        
+        storeActor = getContext().getSystem().actorOf(Props.create(StoreActor.class));
+        executeActor = getContext().getSystem().actorOf(Props.create(ExecuteTestActor.class));
     }
 
     @Override
     public Receive createReceive() {
         return ReceiveBuilder.create()
-                .match(GetRequest.class, msg -> System.out.println(msg.getPackageId()))
+                .match(GetRequest.class, msg -> storeActor.tell(msg, self()))
                 .build();
     }
 }
