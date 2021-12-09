@@ -4,6 +4,7 @@ import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.http.javadsl.ConnectHttp;
 import akka.http.javadsl.Http;
+import akka.http.javadsl.IncomingConnection;
 import akka.http.javadsl.ServerBinding;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
@@ -13,6 +14,9 @@ import akka.stream.javadsl.Flow;
 import java.util.concurrent.CompletionStage;
 
 public class AkkaApp {
+
+    public AkkaApp() {}
+
     public static void main(String[] args) {
         ActorSystem system = ActorSystem.create("JSTesting");
 //        ActorRef actor = system.actorOf(Props.create(StoreActor.class));
@@ -20,7 +24,7 @@ public class AkkaApp {
 
         final Http http = Http.get(system);
         final ActorMaterializer materializer = ActorMaterializer.create(system);
-        MainHttp instance = new MainHttp(system);
+        AkkaApp instance = new AkkaApp();
         final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow =
                 instance.createRoute(system).flow(system, materializer);
         final CompletionStage<ServerBinding> binding = http.bindAndHandle(
@@ -32,5 +36,9 @@ public class AkkaApp {
         System.in.read();
         binding.thenCompose(ServerBinding::unbind)
                 .thenAccept(unbound -> system.terminate());
+    }
+
+    private IncomingConnection createRoute(ActorSystem system) {
+        
     }
 }
