@@ -1,7 +1,7 @@
-package Contracts;
+package ru.bmstu.hadoop.labs.Contracts;
 
 public class GetRequest {
-    private String packageId;
+    private final String packageId;
 
     public GetRequest(String packageId) {
         this.packageId = packageId;

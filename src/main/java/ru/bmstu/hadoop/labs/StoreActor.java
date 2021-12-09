@@ -1,3 +1,5 @@
+package ru.bmstu.hadoop.labs;
+
 import akka.actor.AbstractActor;
 import akka.japi.pf.ReceiveBuilder;
 

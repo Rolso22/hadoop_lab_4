@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.util.concurrent.CompletionStage;
 
 import static akka.http.javadsl.server.Directives.*;
-import
+import ru.bmstu.hadoop.labs.Contracts.*;
 
 public class AkkaApp {
 
@@ -54,7 +54,7 @@ public class AkkaApp {
     private Route createRoute() {
         return route(
                 get(() -> {
-                    Future<String> result = Patterns.ask(router, new )
+                    Future<String> result = Patterns.ask(router, new GetRequest())
                     return completeOKWithFuture(result, Jackson.marshaller());
                 }),
                 post(() -> {
