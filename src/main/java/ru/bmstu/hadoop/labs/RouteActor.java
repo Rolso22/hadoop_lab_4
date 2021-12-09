@@ -12,8 +12,8 @@ public class RouteActor extends AbstractActor {
     private static ActorRef executeActor;
 
     public RouteActor() {
-        storeActor = getContext().actorOf(Props.create(StoreActor.class));
-        executeActor = getContext().actorOf(Props.create(ExecuteTestActor.class));
+        storeActor = context().actorOf(Props.create(StoreActor.class));
+        executeActor = context().actorOf(Props.create(ExecuteTestActor.class));
     }
 
     @Override
