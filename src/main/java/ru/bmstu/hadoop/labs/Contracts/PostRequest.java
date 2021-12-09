@@ -5,9 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class PostRequest {
     @JsonProperty("packageId")
     public String packageId;
-    @JsonProperty("js")
-    public String packageId;
-    @JsonProperty("packageId")
+    @JsonProperty("jsScript")
+    public String jsScript;
+    @JsonProperty("")
     public String packageId;
 
 
