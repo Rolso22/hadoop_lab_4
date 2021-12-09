@@ -2,7 +2,7 @@ import akka.actor.AbstractActor;
 import akka.japi.pf.ReceiveBuilder;
 import java.util.Locale;
 
-public class ResultActor extends AbstractActor {
+public class StoreActor extends AbstractActor {
 
     @Override
     public Receive createReceive() {
