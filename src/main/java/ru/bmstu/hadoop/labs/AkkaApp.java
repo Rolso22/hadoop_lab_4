@@ -29,7 +29,7 @@ public class AkkaApp {
 
     private static ActorRef router;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         ActorSystem system = ActorSystem.create("JSTesting");
         router = system.actorOf(Props.create(RouteActor.class));
 
@@ -44,6 +44,7 @@ public class AkkaApp {
                 materializer
         );
         System.out.println("Server online at http://localhost:" + DEFAULT_PORT);
+        System.in.read();
         binding.thenCompose(ServerBinding::unbind)
                 .thenAccept(unbound -> system.terminate());
     }
