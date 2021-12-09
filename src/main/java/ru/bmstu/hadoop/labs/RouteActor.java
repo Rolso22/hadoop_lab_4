@@ -9,7 +9,7 @@ public class RouteActor extends AbstractActor {
     @Override
     public Receive createReceive() {
         return ReceiveBuilder.create()
-                .match(GetRequest.class, msg -> )
+                .match(GetRequest.class, msg -> System.out.println(msg.getPackageId()))
                 .build();
     }
 }
