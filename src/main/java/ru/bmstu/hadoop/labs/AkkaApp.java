@@ -1,4 +1,4 @@
-package 
+package ru.bmstu.hadoop.labs;
 
 import akka.NotUsed;
 import akka.actor.ActorRef;
