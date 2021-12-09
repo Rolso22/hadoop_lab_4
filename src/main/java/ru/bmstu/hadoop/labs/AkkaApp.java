@@ -56,7 +56,7 @@ public class AkkaApp {
                     return completeOKWithFuture(result, Jackson.marshaller());
                 })),
                 post(() -> entity(Jackson.unmarshaller(PostRequest.class), msg -> {
-                    router.tell(msg, );
+                    Patterns.ask(router, msg, TIME_OUT_MILLIS);
                     return complete("Received something else");
                 })
         ));
