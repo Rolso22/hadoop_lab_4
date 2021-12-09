@@ -53,7 +53,7 @@ public class AkkaApp {
 
     private Route createRoute() {
         return route(
-                get(() -> {
+                get(() -> parameter() -> {
                     Future<String> result = Patterns.ask(router, new GetRequest())
                     return completeOKWithFuture(result, Jackson.marshaller());
                 }),
