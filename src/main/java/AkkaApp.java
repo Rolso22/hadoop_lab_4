@@ -45,7 +45,9 @@ public class AkkaApp {
     private Route createRoute() {
         return route(
                 get(() -> {
-                    return complete("hello");
+                    return Future<Object> result = Patterns.ask(testPackageActor,
+                            SemaphoreActor.makeRequest(), 5000);
+                    return completeOKWithFuture(result, Jackson.marshaller());
                 }),
                 post(() -> {
                     return complete("Received something else");
