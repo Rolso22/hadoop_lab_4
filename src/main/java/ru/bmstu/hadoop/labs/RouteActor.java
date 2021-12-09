@@ -7,7 +7,7 @@ import ru.bmstu.hadoop.labs.Contracts.GetRequest;
 public class RouteActor extends AbstractActor {
 
     public RouteActor() {
-        System.out.println("HERE");
+        
     }
 
     @Override
