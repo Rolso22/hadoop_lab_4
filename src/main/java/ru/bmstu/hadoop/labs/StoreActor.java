@@ -9,7 +9,7 @@ public class StoreActor extends AbstractActor {
     @Override
     public Receive createReceive() {
         return ReceiveBuilder.create()
-                .match(GetRequest.class, msg -> System.out.println(msg.getPackageId()))
+                .match(GetRequest.class, )
                 .build();
     }
 }
