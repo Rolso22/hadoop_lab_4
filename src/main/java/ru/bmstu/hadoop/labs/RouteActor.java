@@ -5,6 +5,7 @@ import akka.actor.ActorRef;
 import akka.actor.Props;
 import akka.japi.pf.ReceiveBuilder;
 import ru.bmstu.hadoop.labs.Contracts.GetRequest;
+import ru.bmstu.hadoop.labs.Contracts.PostRequest;
 
 public class RouteActor extends AbstractActor {
 
@@ -20,6 +21,7 @@ public class RouteActor extends AbstractActor {
     public Receive createReceive() {
         return ReceiveBuilder.create()
                 .match(GetRequest.class, msg -> storeActor.tell(msg, sender()))
+                .match(PostRequest.class, msg -> executeActor.tell(msg, ActorRef.noSender()))
                 .build();
     }
 }
