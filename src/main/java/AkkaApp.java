@@ -42,10 +42,8 @@ public class AkkaApp {
 
     private Route createRoute() {
         return route(
-                get(
-                        () -> complete("Received GET")
-                ).orElse(
-                        () -> complete("Received something else")
+                get(() -> complete("Received GET"))
+                        .orElse(() -> complete("Received something else")
                 )
         );
     }
