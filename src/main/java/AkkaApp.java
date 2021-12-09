@@ -26,10 +26,6 @@ public class AkkaApp {
 
     private static ActorRef router;
 
-    private static AkkaApp getInstance() {
-        return
-    }
-
     public static void main(String[] args) throws IOException {
         ActorSystem system = ActorSystem.create("JSTesting");
 //        ActorRef actor = system.actorOf(Props.create(StoreActor.class));
@@ -55,7 +51,7 @@ public class AkkaApp {
     private Route createRoute() {
         return route(
                 get(() -> {
-                    Future<String> result = Patterns.ask()
+                    Future<String> result = Patterns.ask(router, )
                     return completeOKWithFuture(result, Jackson.marshaller());
                 }),
                 post(() -> {
