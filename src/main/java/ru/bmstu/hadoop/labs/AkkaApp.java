@@ -21,6 +21,7 @@ import java.util.concurrent.CompletionStage;
 
 import static akka.http.javadsl.server.Directives.*;
 import ru.bmstu.hadoop.labs.Contracts.*;
+import static ru.bmstu.hadoop.labs.Constants.*;
 
 public class AkkaApp {
 
@@ -39,10 +40,10 @@ public class AkkaApp {
                 instance.createRoute().flow(system, materializer);
         final CompletionStage<ServerBinding> binding = http.bindAndHandle(
                 routeFlow,
-                ConnectHttp.toHost("localhost", 8080),
+                ConnectHttp.toHost("localhost", DEFAULT_PORT),
                 materializer
         );
-        System.out.println("Server online at http://localhost:8080");
+        System.out.println("Server online at http://localhost:" + DEFAULT_PORT);
         System.in.read();
         binding.thenCompose(ServerBinding::unbind)
                 .thenAccept(unbound -> system.terminate());
@@ -50,8 +51,8 @@ public class AkkaApp {
 
     private Route createRoute() {
         return route(
-                get(() -> parameter("packageId", (id) -> {
-                    Future<Object> result = Patterns.ask(router, new GetRequest(id), 3000);
+                get(() -> parameter(PACKAGE_ID, (id) -> {
+                    Future<Object> result = Patterns.ask(router, new GetRequest(id), TIME_OUT_MILLIS);
                     return completeOKWithFuture(result, Jackson.marshaller());
                 })),
                 post(() -> {
