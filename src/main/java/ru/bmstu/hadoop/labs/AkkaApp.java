@@ -6,7 +6,6 @@ import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.http.javadsl.ConnectHttp;
 import akka.http.javadsl.Http;
-import akka.http.javadsl.IncomingConnection;
 import akka.http.javadsl.ServerBinding;
 import akka.http.javadsl.marshallers.jackson.Jackson;
 import akka.http.javadsl.model.HttpRequest;
@@ -31,8 +30,6 @@ public class AkkaApp {
 
     public static void main(String[] args) throws IOException {
         ActorSystem system = ActorSystem.create("JSTesting");
-//        ActorRef actor = system.actorOf(Props.create(StoreActor.class));
-//        actor.tell("test", ActorRef.noSender());
         router = system.actorOf(Props.create(RouteActor.class));
 
         final Http http = Http.get(system);
@@ -53,8 +50,8 @@ public class AkkaApp {
 
     private Route createRoute() {
         return route(
-                get(() -> parameter("packageId" (id) -> {
-                    Future<String> result = Patterns.ask(router, new GetRequest(id))
+                get(() -> parameter("packageId", (id) -> {
+                    Future<Object> result = Patterns.ask(router, new GetRequest(id), 5000);
                     return completeOKWithFuture(result, Jackson.marshaller());
                 })),
                 post(() -> {
