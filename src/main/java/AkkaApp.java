@@ -50,7 +50,7 @@ public class AkkaApp {
         return route(
                 get(() -> {
                     Future<String> f1 = Futures.successful("foo");
-                    return complete(f1.value().get().toString());
+                    return complete(f1.value().get().get());
                 }),
                 post(() -> {
                     return complete("Received something else");
