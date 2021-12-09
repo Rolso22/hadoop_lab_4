@@ -42,7 +42,9 @@ public class AkkaApp {
 
     private Route createRoute() {
         return route(
-                get(() -> complete("Received GET")),
+                get(() -> {
+                    return "hello";
+                }),
                 post(() -> complete("Received something else"))
         );
     }
