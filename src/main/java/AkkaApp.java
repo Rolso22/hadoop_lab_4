@@ -2,7 +2,6 @@ import akka.NotUsed;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
-import akka.dispatch.Futures;
 import akka.http.javadsl.ConnectHttp;
 import akka.http.javadsl.Http;
 import akka.http.javadsl.IncomingConnection;
@@ -49,8 +48,8 @@ public class AkkaApp {
     private Route createRoute() {
         return route(
                 get(() -> {
-                    Future<String> f1 = Futures.successful("foo");
-                    return complete(f1.value().get().get());
+                    Future<String> result = Patterns.ask()
+                    return completeOKWithFuture(result, Jackson.marshaller());
                 }),
                 post(() -> {
                     return complete("Received something else");
