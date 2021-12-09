@@ -9,7 +9,7 @@ public class RouteActor extends AbstractActor {
     @Override
     public Receive createReceive() {
         return ReceiveBuilder.create()
-                .match(GetRequest.class, s -> )
+                .match(GetRequest.class, msg -> )
                 .build();
     }
 }
