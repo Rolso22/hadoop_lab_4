@@ -27,7 +27,7 @@ public class AkkaApp {
         final ActorMaterializer materializer = ActorMaterializer.create(system);
         AkkaApp instance = new AkkaApp();
         final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow =
-                instance.createRoute(system).flow(system, materializer);
+                instance.createRoute().flow(system, materializer);
         final CompletionStage<ServerBinding> binding = http.bindAndHandle(
                 routeFlow,
                 ConnectHttp.toHost("localhost", 8080),
@@ -39,7 +39,7 @@ public class AkkaApp {
                 .thenAccept(unbound -> system.terminate());
     }
 
-    private Route createRoute(ActorSystem system) {
+    private Route createRoute() {
         return 
     }
 }
