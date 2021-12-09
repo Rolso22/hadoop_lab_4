@@ -24,10 +24,17 @@ public class AkkaApp {
 
     public AkkaApp() {}
 
+    private static ActorRef router;
+
+    private static AkkaApp getInstance() {
+        return
+    }
+
     public static void main(String[] args) throws IOException {
         ActorSystem system = ActorSystem.create("JSTesting");
 //        ActorRef actor = system.actorOf(Props.create(StoreActor.class));
 //        actor.tell("test", ActorRef.noSender());
+        router = system.actorOf(Props.create(RouteActor.class));
 
         final Http http = Http.get(system);
         final ActorMaterializer materializer = ActorMaterializer.create(system);
