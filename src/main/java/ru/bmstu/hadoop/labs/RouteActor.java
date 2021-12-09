@@ -19,7 +19,7 @@ public class RouteActor extends AbstractActor {
     @Override
     public Receive createReceive() {
         return ReceiveBuilder.create()
-                .match(GetRequest.class, msg -> storeActor.tell(msg, self()))
+                .match(GetRequest.class, msg -> storeActor.tell(msg, getSender()))
                 .build();
     }
 }
