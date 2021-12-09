@@ -15,6 +15,8 @@ import akka.stream.javadsl.Flow;
 import java.io.IOException;
 import java.util.concurrent.CompletionStage;
 
+import static akka.http.javadsl.server.Directives.*;
+
 public class AkkaApp {
 
     public AkkaApp() {}
@@ -41,11 +43,13 @@ public class AkkaApp {
     }
 
     private Route createRoute() {
-        return oute(
+        return route(
                 get(() -> {
-                    return "hello";
+                    return complete("hello");
                 }),
-                post(() -> complete("Received something else"))
+                post(() -> {
+                    return complete("Received something else");
+                })
         );
     }
 }
