@@ -52,7 +52,8 @@ public class AkkaApp {
         return route(
                 get(() -> parameter("packageId", (id) -> {
                     Future<Object> result = Patterns.ask(router, new GetRequest(id), 5000);
-                    return completeOKWithFuture(result, Jackson.marshaller());
+                    //return completeOKWithFuture(result, Jackson.marshaller());
+                    return complete("OK");
                 })),
                 post(() -> {
                     return complete("Received something else");
