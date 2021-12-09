@@ -2,6 +2,7 @@ import akka.NotUsed;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
+import akka.compat.Future;
 import akka.http.javadsl.ConnectHttp;
 import akka.http.javadsl.Http;
 import akka.http.javadsl.IncomingConnection;
@@ -45,7 +46,7 @@ public class AkkaApp {
     private Route createRoute() {
         return route(
                 get(() -> {
-                    return Future<Object> result = Patterns.ask(testPackageActor,
+                    Future<Object> result = Patterns.ask(testPackageActor,
                             SemaphoreActor.makeRequest(), 5000);
                     return completeOKWithFuture(result, Jackson.marshaller());
                 }),
