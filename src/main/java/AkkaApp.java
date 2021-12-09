@@ -41,7 +41,7 @@ public class AkkaApp {
     }
 
     private Route createRoute() {
-        return Route(
+        return oute(
                 get(() -> {
                     return "hello";
                 }),
