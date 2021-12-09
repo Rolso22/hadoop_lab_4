@@ -7,8 +7,8 @@ public class PostRequest {
     public String packageId;
     @JsonProperty("jsScript")
     public String jsScript;
-    @JsonProperty("")
-    public String packageId;
+    @JsonProperty("functionName")
+    public String fnName;
 
 
 
