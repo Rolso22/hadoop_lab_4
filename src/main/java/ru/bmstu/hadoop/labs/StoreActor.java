@@ -28,6 +28,7 @@ public class StoreActor extends AbstractActor {
     }
 
     private void getPackage(GetRequest msg) {
+        System.out.println(store.get(msg.getPackageId()).entrySet());
         sender().tell(store.get(msg.getPackageId()).entrySet().toString(), ActorRef.noSender());
     }
 
