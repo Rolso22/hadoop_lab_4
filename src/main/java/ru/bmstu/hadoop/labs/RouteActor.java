@@ -24,6 +24,7 @@ public class RouteActor extends AbstractActor {
 
     {
         storeActor = context().actorOf(Props.create(StoreActor.class));
+        context().watch(storeActor);
 
         List<Routee> routees = new ArrayList<>();
         for (int i = 0; i < NUMBER_OF_EXECUTERS; i++) {
