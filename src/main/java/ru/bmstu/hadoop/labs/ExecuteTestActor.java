@@ -2,7 +2,6 @@ package ru.bmstu.hadoop.labs;
 
 import akka.actor.AbstractActor;
 import akka.actor.ActorRef;
-import akka.actor.Props;
 import akka.japi.pf.ReceiveBuilder;
 import ru.bmstu.hadoop.labs.Contracts.Result;
 import ru.bmstu.hadoop.labs.Contracts.Test;
