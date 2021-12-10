@@ -32,7 +32,7 @@ public class ExecuteTestActor extends AbstractActor {
         engine.eval(msg.getJsScript());
         Invocable invocable = (Invocable) engine;
 
-        String result = invocable.invokeFunction(msg.getFnName(), (Object) msg.getParams()).toString();
+        String result = invocable.invokeFunction(msg.getFnName(), msg.getParams().toArray()).toString();
         //storeActor.tell(, ActorRef.noSender());
         System.out.println(result);
         System.out.println(msg.getParams());
