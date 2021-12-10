@@ -17,6 +17,7 @@ public class StoreActor extends AbstractActor {
                 .match(Result.class, this::saveResult)
                 .match(GetRequest.class, msg -> {
                     System.out.println(msg.getPackageId());
+                    getPackage(msg);
                 })
                 .build();
     }
@@ -30,6 +31,7 @@ public class StoreActor extends AbstractActor {
     }
 
     private void getPackage(GetRequest msg) {
+        System.out.println("from func: " + msg.getPackageId());
         System.out.println(store.get(msg.getPackageId()).entrySet());
         sender().tell(store.get(msg.getPackageId()).entrySet().toString(), ActorRef.noSender());
     }
