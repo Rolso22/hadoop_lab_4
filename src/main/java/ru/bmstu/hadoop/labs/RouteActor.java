@@ -4,6 +4,7 @@ import akka.actor.AbstractActor;
 import akka.actor.ActorRef;
 import akka.actor.Props;
 import akka.actor.Terminated;
+import akka.http.javadsl.marshallers.jackson.Jackson;
 import akka.japi.pf.ReceiveBuilder;
 import akka.routing.ActorRefRoutee;
 import akka.routing.RoundRobinRoutingLogic;
