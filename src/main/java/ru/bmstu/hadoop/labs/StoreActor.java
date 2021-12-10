@@ -14,10 +14,10 @@ public class StoreActor extends AbstractActor {
     @Override
     public Receive createReceive() {
         return ReceiveBuilder.create()
-                .match(Result.class, msg -> {
+                .match(Result.class, this::saveResult)
+                .match(GetRequest.class, msg -> {
                     System.out.println(msg.getPackageId());
                 })
-                .match(GetRequest.class, this::getPackage)
                 .build();
     }
 
