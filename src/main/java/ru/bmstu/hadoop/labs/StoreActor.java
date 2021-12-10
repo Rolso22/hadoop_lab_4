@@ -4,6 +4,7 @@ import akka.actor.AbstractActor;
 import akka.actor.ActorRef;
 import akka.japi.pf.ReceiveBuilder;
 import ru.bmstu.hadoop.labs.Contracts.GetRequest;
+import ru.bmstu.hadoop.labs.Contracts.Response;
 import ru.bmstu.hadoop.labs.Contracts.Result;
 
 import java.util.HashMap;
@@ -29,11 +30,7 @@ public class StoreActor extends AbstractActor {
     }
 
     private void getPackage(GetRequest msg) {
-        StringBuilder packageTest = new StringBuilder();
-        store.get(msg.getPackageId()).forEach((key, value) -> packageTest
-                .append("Name: ").append(key).append("\n")
-                .append("Result: ").append(value).append("\n"));
-        sender().tell(String.valueOf(packageTest), ActorRef.noSender());
+        sender().tell(new Response(msg.getPackageId(), store.get(msg.getPackageId())), ActorRef.noSender());
     }
 
 }
