@@ -23,14 +23,14 @@ public class RouteActor extends AbstractActor {
     private final ActorRef storeActor;
     private Router router;
 
-    public RouteActor() {
+    {
         storeActor = context().actorOf(Props.create(StoreActor.class));
 
         List<Routee> routees = new ArrayList<>();
         for (int i = 0; i < NUMBER_OF_EXECUTERS; i++) {
-            ActorRef r = getContext().actorOf(Props.create(ExecuteTestActor.class));
-            getContext().watch(r);
-            routees.add(new ActorRefRoutee(r));
+            ActorRef executeActor = getContext().actorOf(Props.create(ExecuteTestActor.class));
+            getContext().watch(executeActor);
+            routees.add(new ActorRefRoutee(executeActor));
         }
         router = new Router(new RoundRobinRoutingLogic(), routees);
     }
@@ -40,12 +40,7 @@ public class RouteActor extends AbstractActor {
         return ReceiveBuilder.create()
                 .match(GetRequest.class, msg -> storeActor.tell(msg, sender()))
                 .match(PostRequest.class, this::executeTests)
-                .match(Terminated.class, msg -> {
-                    router = router.removeRoutee(msg.actor());
-                    ActorRef r = getContext().actorOf(Props.create(ExecuteTestActor.class));
-                    getContext().watch(r);
-                    router = router.addRoutee(new ActorRefRoutee(r));
-                })
+                .match(Terminated.class, this::restartTeminatedExecuters)
                 .build();
     }
 
@@ -53,6 +48,13 @@ public class RouteActor extends AbstractActor {
         for (Test test : msg.getTests()) {
             router.route(test, sender());
         }
+    }
+
+    private void restartTeminatedExecuters(Terminated msg) {
+        router = router.removeRoutee(msg.actor());
+        ActorRef executeActor = getContext().actorOf(Props.create(ExecuteTestActor.class));
+        getContext().watch(executeActor);
+        router = router.addRoutee(new ActorRefRoutee(executeActor));
     }
 
 }
