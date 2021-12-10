@@ -52,7 +52,7 @@ public class AkkaApp {
     private Route createRoute() {
         return route(
                 get(() -> parameter(PACKAGE_ID, (id) -> {
-                    Future<Object> result = Patterns.ask(router, new GetRequest(id), TIME_OUT_MILLIS);
+                    CompletionStage<String> result = Patterns.ask(router, new GetRequest(id), TIME_OUT_MILLIS);
                     return completeOKWithFutureString(result);
                 })),
                 post(() -> entity(Jackson.unmarshaller(TestPackage.class), msg -> {
