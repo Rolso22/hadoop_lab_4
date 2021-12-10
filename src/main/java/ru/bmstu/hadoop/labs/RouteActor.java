@@ -51,7 +51,7 @@ public class RouteActor extends AbstractActor {
 
     private void executeTests(PostRequest msg) {
         for (Test test : msg.getTests()) {
-            System.out.println("params: " + test.getParams().get(0) + " " + test.getParams().get(1));
+            System.out.println("params: " + test.getFirstParam() + " " + test.getSecondParam());
         }
     }
 

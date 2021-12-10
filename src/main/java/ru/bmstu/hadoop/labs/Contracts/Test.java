@@ -20,7 +20,12 @@ public class Test {
         return result;
     }
 
-    public List<Integer> getParams() {
-        return params;
+    public int getFirstParam() {
+        return params.get(0);
     }
+
+    public int getSecondParam() {
+        return params.get(1);
+    }
+
 }
