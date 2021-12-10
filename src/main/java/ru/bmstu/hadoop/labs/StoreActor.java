@@ -15,23 +15,20 @@ public class StoreActor extends AbstractActor {
     public Receive createReceive() {
         return ReceiveBuilder.create()
                 .match(Result.class, this::saveResult)
-                .match(GetRequest.class, msg -> {
-                    System.out.println(msg.getPackageId());
-                    getPackage(msg);
-                })
+                .match(GetRequest.class, this::getPackage)
                 .build();
     }
 
     private void saveResult(Result msg) {
         if (!store.containsKey(msg.getPackageId())) {
             store.put(msg.getPackageId(), new HashMap<>());
+            System.out.println("put: " + msg.getPackageId());
         }
         System.out.println(msg.getPackageId() + " " + msg.getName() + " " + msg.getResult());
         store.get(msg.getPackageId()).put(msg.getName(), msg.getResult());
     }
 
     private void getPackage(GetRequest msg) {
-        System.out.println("from func: " + msg.getPackageId());
         System.out.println(store.get(msg.getPackageId()).entrySet());
         sender().tell(store.get(msg.getPackageId()).entrySet().toString(), ActorRef.noSender());
     }
