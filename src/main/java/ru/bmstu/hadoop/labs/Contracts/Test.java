@@ -1,2 +1,4 @@
-package ru.bmstu.hadoop.labs.Contracts;public class Test {
+package ru.bmstu.hadoop.labs.Contracts;
+
+public class Test {
 }
