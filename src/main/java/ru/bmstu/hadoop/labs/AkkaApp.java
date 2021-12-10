@@ -25,8 +25,6 @@ import static ru.bmstu.hadoop.labs.Constants.*;
 
 public class AkkaApp {
 
-    public AkkaApp() {}
-
     private static ActorRef router;
 
     public static void main(String[] args) throws IOException {
@@ -35,9 +33,7 @@ public class AkkaApp {
 
         final Http http = Http.get(system);
         final ActorMaterializer materializer = ActorMaterializer.create(system);
-        AkkaApp instance = new AkkaApp();
-        final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow =
-                instance.createRoute().flow(system, materializer);
+        final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow = AkkaApp.createRoute().flow(system, materializer);
         final CompletionStage<ServerBinding> binding = http.bindAndHandle(
                 routeFlow,
                 ConnectHttp.toHost("localhost", DEFAULT_PORT),
@@ -49,7 +45,7 @@ public class AkkaApp {
                 .thenAccept(unbound -> system.terminate());
     }
 
-    private Route createRoute() {
+    private static Route createRoute() {
         return route(
                 get(() -> parameter(PACKAGE_ID, (id) -> {
                     Future<Object> result = Patterns.ask(router, new GetRequest(id), TIME_OUT_MILLIS);
