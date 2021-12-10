@@ -1,5 +1,6 @@
 package ru.bmstu.hadoop.labs.Contracts;
 
 public class Test {
-    public 
+    public String name;
+    public String 
 }
