@@ -14,12 +14,6 @@ import javax.script.ScriptException;
 
 public class ExecuteTestActor extends AbstractActor {
 
-    private final ActorRef storeActor;
-
-    {
-        storeActor = getContext().actorOf(Props.create(StoreActor.class));
-    }
-
     @Override
     public Receive createReceive() {
         return ReceiveBuilder.create()
@@ -34,7 +28,7 @@ public class ExecuteTestActor extends AbstractActor {
         Invocable invocable = (Invocable) engine;
 
         String result = invocable.invokeFunction(msg.getFnName(), msg.getParams().toArray()).toString();
-        storeActor.tell(new Result(msg.getName(), result, msg.getPackageId()), ActorRef.noSender());
+        sender().tell(new Result(msg.getName(), result, msg.getPackageId()), ActorRef.noSender());
     }
 
 }

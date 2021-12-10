@@ -49,7 +49,7 @@ public class RouteActor extends AbstractActor {
             test.setFnName(msg.getFnName());
             test.setJsScript(msg.getJsScript());
             test.setPackageId(msg.getPackageId());
-            router.route(test, sender());
+            router.route(test, storeActor);
         }
     }
 
