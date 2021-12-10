@@ -12,6 +12,7 @@ import akka.routing.Routee;
 import akka.routing.Router;
 import ru.bmstu.hadoop.labs.Contracts.GetRequest;
 import ru.bmstu.hadoop.labs.Contracts.PostRequest;
+import ru.bmstu.hadoop.labs.Contracts.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,8 +50,8 @@ public class RouteActor extends AbstractActor {
     }
 
     private void executeTests(PostRequest msg) {
-        for (Object test : msg.getTests()) {
-            JsonO
+        for (Test test : msg.getTests()) {
+            System.out.println("name: " + test.getName());
         }
     }
 

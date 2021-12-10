@@ -11,4 +11,16 @@ public class Test {
     public String result;
     @JsonProperty("params")
     public List<Integer> params;
+
+    public String getName() {
+        return name;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public List<Integer> getParams() {
+        return params;
+    }
 }

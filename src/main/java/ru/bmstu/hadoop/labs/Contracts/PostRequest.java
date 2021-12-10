@@ -12,7 +12,7 @@ public class PostRequest {
     @JsonProperty("functionName")
     public String fnName;
     @JsonProperty("tests")
-    public ArrayList<Object> tests;
+    public ArrayList<Test> tests;
 
     public String getPackageId() {
         return packageId;
@@ -26,7 +26,7 @@ public class PostRequest {
         return fnName;
     }
 
-    public ArrayList<Object> getTests() {
+    public ArrayList<Test> getTests() {
         return tests;
     }
 }
