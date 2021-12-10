@@ -23,8 +23,8 @@ public class RouteActor extends AbstractActor {
     private Router router;
 
     {
-        storeActor = context().actorOf(Props.create(StoreActor.class));
-        context().watch(storeActor);
+        storeActor = getContext().actorOf(Props.create(StoreActor.class));
+        getContext().watch(storeActor);
 
         List<Routee> routees = new ArrayList<>();
         for (int i = 0; i < NUMBER_OF_EXECUTERS; i++) {

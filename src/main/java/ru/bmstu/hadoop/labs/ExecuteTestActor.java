@@ -17,7 +17,7 @@ public class ExecuteTestActor extends AbstractActor {
     private final ActorRef storeActor;
 
     {
-        storeActor = context().actorOf(Props.create(StoreActor.class));
+        storeActor = getContext().actorOf(Props.create(StoreActor.class));
     }
 
     @Override
