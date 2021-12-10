@@ -55,7 +55,7 @@ public class AkkaApp {
                     Future<Object> result = Patterns.ask(router, new GetRequest(id), TIME_OUT_MILLIS);
                     return completeOKWithFuture(result, Jackson.marshaller());
                 })),
-                post(() -> entity(Jackson.unmarshaller(PostRequest.class), msg -> {
+                post(() -> entity(Jackson.unmarshaller(TestPackage.class), msg -> {
                     router.tell(msg, ActorRef.noSender());
                     return complete("Execute!");
                 })

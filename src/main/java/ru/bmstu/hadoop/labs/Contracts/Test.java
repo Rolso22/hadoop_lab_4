@@ -11,6 +11,8 @@ public class Test {
     public String result;
     @JsonProperty("params")
     public List<Integer> params;
+    private String fnName;
+    private String jsScript;
 
     public String getName() {
         return name;
@@ -20,12 +22,9 @@ public class Test {
         return result;
     }
 
-    public int getFirstParam() {
-        return params.get(0);
+    public List<Integer> getParams() {
+        return params;
     }
 
-    public int getSecondParam() {
-        return params.get(1);
-    }
-
+    
 }

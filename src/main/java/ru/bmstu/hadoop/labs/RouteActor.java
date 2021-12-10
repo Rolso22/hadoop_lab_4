@@ -4,14 +4,13 @@ import akka.actor.AbstractActor;
 import akka.actor.ActorRef;
 import akka.actor.Props;
 import akka.actor.Terminated;
-import akka.http.javadsl.marshallers.jackson.Jackson;
 import akka.japi.pf.ReceiveBuilder;
 import akka.routing.ActorRefRoutee;
 import akka.routing.RoundRobinRoutingLogic;
 import akka.routing.Routee;
 import akka.routing.Router;
 import ru.bmstu.hadoop.labs.Contracts.GetRequest;
-import ru.bmstu.hadoop.labs.Contracts.PostRequest;
+import ru.bmstu.hadoop.labs.Contracts.TestPackage;
 import ru.bmstu.hadoop.labs.Contracts.Test;
 
 import java.util.ArrayList;
@@ -39,12 +38,13 @@ public class RouteActor extends AbstractActor {
     public Receive createReceive() {
         return ReceiveBuilder.create()
                 .match(GetRequest.class, msg -> storeActor.tell(msg, sender()))
-                .match(PostRequest.class, this::executeTests)
+                .match(TestPackage.class, this::executeTests)
                 .match(Terminated.class, this::restartTeminatedExecuters)
                 .build();
     }
 
-    private void executeTests(PostRequest msg) {
+    private void executeTests(TestPackage msg) {
+
         for (Test test : msg.getTests()) {
             router.route(test, sender());
         }

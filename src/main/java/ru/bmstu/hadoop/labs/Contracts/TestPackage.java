@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
 
-public class PostRequest {
+public class TestPackage {
     @JsonProperty("packageId")
     public String packageId;
     @JsonProperty("jsScript")
