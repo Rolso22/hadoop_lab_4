@@ -37,7 +37,10 @@ public class RouteActor extends AbstractActor {
     @Override
     public Receive createReceive() {
         return ReceiveBuilder.create()
-                .match(GetRequest.class, msg -> storeActor.tell(msg, sender()))
+                .match(GetRequest.class, msg -> {
+                    System.out.println(msg.getPackageId());
+                    storeActor.tell(msg, sender());
+                })
                 .match(TestPackage.class, this::executeTests)
                 .match(Terminated.class, this::restartTeminatedExecuters)
                 .build();
