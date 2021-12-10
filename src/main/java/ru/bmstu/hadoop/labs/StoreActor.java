@@ -7,6 +7,7 @@ import ru.bmstu.hadoop.labs.Contracts.GetRequest;
 import ru.bmstu.hadoop.labs.Contracts.Result;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class StoreActor extends AbstractActor {
     private final HashMap<String, HashMap<String, String>> store = new HashMap<>();
@@ -28,8 +29,11 @@ public class StoreActor extends AbstractActor {
     }
 
     private void getPackage(GetRequest msg) {
-        System.out.println(store.get(msg.getPackageId()).entrySet());
-        sender().tell(store.get(msg.getPackageId()).entrySet().toString(), ActorRef.noSender());
+        StringBuilder packageTest = new StringBuilder();
+        store.get(msg.getPackageId()).forEach((key, value) -> packageTest
+                .append("Name: ").append(key).append("\n")
+                .append("Result: ").append(value).append("\n"));
+        sender().tell(String.valueOf(packageTest), ActorRef.noSender());
     }
 
 }
