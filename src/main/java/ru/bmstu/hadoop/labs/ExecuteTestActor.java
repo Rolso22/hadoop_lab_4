@@ -33,9 +33,7 @@ public class ExecuteTestActor extends AbstractActor {
         Invocable invocable = (Invocable) engine;
 
         String result = invocable.invokeFunction(msg.getFnName(), msg.getParams().toArray()).toString();
-        //storeActor.tell(, ActorRef.noSender());
-        System.out.println(result);
-        System.out.println(msg.getParams());
+        storeActor.tell(, ActorRef.noSender());
     }
 
 }
