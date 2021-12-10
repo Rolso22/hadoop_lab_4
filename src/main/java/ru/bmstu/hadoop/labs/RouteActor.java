@@ -9,7 +9,6 @@ import akka.routing.ActorRefRoutee;
 import akka.routing.RoundRobinRoutingLogic;
 import akka.routing.Routee;
 import akka.routing.Router;
-import javafx.geometry.Pos;
 import ru.bmstu.hadoop.labs.Contracts.GetRequest;
 import ru.bmstu.hadoop.labs.Contracts.PostRequest;
 
@@ -22,11 +21,10 @@ public class RouteActor extends AbstractActor {
     private final ActorRef storeActor;
     private Router router;
 
-
     public RouteActor() {
         storeActor = context().actorOf(Props.create(StoreActor.class));
 
-        List<Routee> routees = new ArrayList<Routee>();
+        List<Routee> routees = new ArrayList<>();
         for (int i = 0; i < NUMBER_OF_EXECUTERS; i++) {
             ActorRef r = getContext().actorOf(Props.create(ExecuteTestActor.class));
             getContext().watch(r);
@@ -50,7 +48,9 @@ public class RouteActor extends AbstractActor {
     }
 
     private void executeTests(PostRequest msg) {
-        
+        for (Object test : msg.getTests()) {
+            
+        }
     }
 
 }
