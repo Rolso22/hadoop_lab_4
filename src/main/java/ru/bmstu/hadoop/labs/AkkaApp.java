@@ -52,8 +52,8 @@ public class AkkaApp {
     private Route createRoute() {
         return route(
                 get(() -> parameter(PACKAGE_ID, (id) -> {
-                    CompletionStage<String> result = Patterns.ask(router, new GetRequest(id), TIME_OUT_MILLIS);
-                    return completeOKWithFutureString(result);
+                    Future<Object> result = Patterns.ask(router, new GetRequest(id), TIME_OUT_MILLIS);
+                    return completeOKWithFuture(result, Jackson.marshaller());
                 })),
                 post(() -> entity(Jackson.unmarshaller(TestPackage.class), msg -> {
                     router.tell(msg, ActorRef.noSender());
