@@ -17,10 +17,12 @@ public class ExecuteTestActor extends AbstractActor {
     @Override
     public Receive createReceive() {
         return ReceiveBuilder.create()
-                .match(Test.class, msg -> {
-
-                })
+                .match(Test.class, this::execute)
                 .build();
+    }
+
+    private void execute(Test msg) {
+        
     }
 
 }
