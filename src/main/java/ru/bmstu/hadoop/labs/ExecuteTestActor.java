@@ -4,6 +4,7 @@ import akka.actor.AbstractActor;
 import akka.actor.ActorRef;
 import akka.actor.Props;
 import akka.japi.pf.ReceiveBuilder;
+import ru.bmstu.hadoop.labs.Contracts.Result;
 import ru.bmstu.hadoop.labs.Contracts.Test;
 
 import javax.script.Invocable;
@@ -33,7 +34,7 @@ public class ExecuteTestActor extends AbstractActor {
         Invocable invocable = (Invocable) engine;
 
         String result = invocable.invokeFunction(msg.getFnName(), msg.getParams().toArray()).toString();
-        storeActor.tell(, ActorRef.noSender());
+        storeActor.tell(new Result(msg.getName(), result, msg.getPackageId()), ActorRef.noSender());
     }
 
 }
