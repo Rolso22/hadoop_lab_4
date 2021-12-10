@@ -51,7 +51,7 @@ public class RouteActor extends AbstractActor {
 
     private void executeTests(PostRequest msg) {
         for (Test test : msg.getTests()) {
-            router.route()
+            router.route(test, sender());
         }
     }
 
