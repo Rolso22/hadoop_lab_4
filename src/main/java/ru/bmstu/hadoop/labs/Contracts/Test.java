@@ -9,6 +9,6 @@ public class Test {
     public String name;
     @JsonProperty("expectedResult")
     public String result;
-    @JsonProperty("")
+    @JsonProperty("params")
     public List<Integer> params;
 }
