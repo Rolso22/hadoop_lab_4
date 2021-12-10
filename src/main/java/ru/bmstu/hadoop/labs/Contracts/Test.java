@@ -7,7 +7,8 @@ import java.util.List;
 public class Test {
     @JsonProperty("testName")
     public String name;
-    @JsonProperty("")
+    @JsonProperty("expectedResult")
     public String result;
+    @JsonProperty("")
     public List<Integer> params;
 }
