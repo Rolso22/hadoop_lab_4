@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 public class Test {
-    @JsonProperty("functionName")
+    @JsonProperty("testName")
     public String name;
     @JsonProperty("")
     public String result;
