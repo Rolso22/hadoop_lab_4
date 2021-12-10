@@ -47,6 +47,7 @@ public class RouteActor extends AbstractActor {
         for (Test test : msg.getTests()) {
             test.setFnName(msg.getFnName());
             test.setJsScript(msg.getJsScript());
+            test.setPackageId(msg.getPackageId());
             router.route(test, sender());
         }
     }

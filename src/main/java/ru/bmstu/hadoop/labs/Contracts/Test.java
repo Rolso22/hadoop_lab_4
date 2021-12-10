@@ -13,6 +13,7 @@ public class Test {
     public List<Integer> params;
     private String fnName;
     private String jsScript;
+    private String packageId;
 
     public String getName() {
         return name;
@@ -40,5 +41,13 @@ public class Test {
 
     public String getJsScript() {
         return jsScript;
+    }
+
+    public String getPackageId() {
+        return packageId;
+    }
+
+    public void setPackageId(String packageId) {
+        this.packageId = packageId;
     }
 }
