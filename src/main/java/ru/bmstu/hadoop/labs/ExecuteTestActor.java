@@ -6,6 +6,11 @@ import akka.actor.Props;
 import akka.japi.pf.ReceiveBuilder;
 import ru.bmstu.hadoop.labs.Contracts.Test;
 
+import javax.script.Invocable;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+
 public class ExecuteTestActor extends AbstractActor {
 
     private final ActorRef storeActor;
@@ -21,8 +26,12 @@ public class ExecuteTestActor extends AbstractActor {
                 .build();
     }
 
-    private void execute(Test msg) {
-        
+    private void execute(Test msg) throws ScriptException {
+
+        ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
+        engine.eval(msg.get);
+        Invocable invocable = (Invocable) engine;
+        return invocable.invokeFunction(functionName, params).toString();
     }
 
 }
