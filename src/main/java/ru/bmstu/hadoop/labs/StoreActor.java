@@ -1,8 +1,8 @@
 package ru.bmstu.hadoop.labs;
 
 import akka.actor.AbstractActor;
+import akka.actor.ActorRef;
 import akka.japi.pf.ReceiveBuilder;
-import akka.pattern.Patterns;
 import ru.bmstu.hadoop.labs.Contracts.GetRequest;
 import ru.bmstu.hadoop.labs.Contracts.Result;
 
@@ -15,7 +15,7 @@ public class StoreActor extends AbstractActor {
     public Receive createReceive() {
         return ReceiveBuilder.create()
                 .match(Result.class, this::saveResult)
-                .match(GetRequest.class, msg -> sender().tell())
+                .match(GetRequest.class, this::getPackage)
                 .build();
     }
 
@@ -25,4 +25,9 @@ public class StoreActor extends AbstractActor {
         }
         store.get(msg.getPackageId()).put(msg.getName(), msg.getResult());
     }
+
+    private void getPackage(GetRequest msg) {
+        sender().tell(store.get(msg.getPackageId()).entrySet().toString(), ActorRef.noSender());
+    }
+
 }
