@@ -26,5 +26,19 @@ public class Test {
         return params;
     }
 
-    
+    public void setFnName(String fnName) {
+        this.fnName = fnName;
+    }
+
+    public void setJsScript(String jsScript) {
+        this.jsScript = jsScript;
+    }
+
+    public String getFnName() {
+        return fnName;
+    }
+
+    public String getJsScript() {
+        return jsScript;
+    }
 }

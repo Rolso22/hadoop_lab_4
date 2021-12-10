@@ -26,12 +26,12 @@ public class ExecuteTestActor extends AbstractActor {
                 .build();
     }
 
-    private void execute(Test msg) throws ScriptException {
+    private void execute(Test msg) throws ScriptException, NoSuchMethodException {
 
         ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
-        engine.eval(msg.get);
+        engine.eval(msg.getJsScript());
         Invocable invocable = (Invocable) engine;
-        return invocable.invokeFunction(functionName, params).toString();
+        storeActor.tell(invocable.invokeFunction(msg.getFnName(), msg.getParams()).toString(), ActorRef.noSender());
     }
 
 }
