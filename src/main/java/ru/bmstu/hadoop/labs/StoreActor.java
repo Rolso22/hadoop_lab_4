@@ -22,6 +22,7 @@ public class StoreActor extends AbstractActor {
     private void saveResult(Result msg) {
         if (!store.containsKey(msg.getPackageId())) {
             store.put(msg.getPackageId(), new HashMap<>());
+            System.out.println(store.entrySet());
             System.out.println("put: " + msg.getPackageId());
         }
         System.out.println(msg.getPackageId() + " " + msg.getName() + " " + msg.getResult());
