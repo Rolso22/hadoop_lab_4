@@ -6,9 +6,7 @@ import akka.japi.pf.ReceiveBuilder;
 import ru.bmstu.hadoop.labs.Contracts.GetRequest;
 import ru.bmstu.hadoop.labs.Contracts.Response;
 import ru.bmstu.hadoop.labs.Contracts.Result;
-
 import java.util.HashMap;
-import java.util.Map;
 
 public class StoreActor extends AbstractActor {
     private final HashMap<String, HashMap<String, String>> store = new HashMap<>();
@@ -22,7 +20,6 @@ public class StoreActor extends AbstractActor {
     }
 
     private void saveResult(Result msg) {
-        System.out.println(store.entrySet());
         if (!store.containsKey(msg.getPackageId())) {
             store.put(msg.getPackageId(), new HashMap<>());
         }

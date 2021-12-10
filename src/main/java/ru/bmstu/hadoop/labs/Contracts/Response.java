@@ -14,12 +14,4 @@ public class Response {
         this.name = name;
         this.result = result;
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public HashMap<String, String> getResult() {
-        return result;
-    }
 }

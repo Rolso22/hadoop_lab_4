@@ -43,7 +43,7 @@ public class AkkaApp {
                 ConnectHttp.toHost("localhost", DEFAULT_PORT),
                 materializer
         );
-        System.out.println("Server online at http://localhost:" + DEFAULT_PORT);
+        System.out.println(SERVER_ONLINE + DEFAULT_PORT);
         System.in.read();
         binding.thenCompose(ServerBinding::unbind)
                 .thenAccept(unbound -> system.terminate());
@@ -57,7 +57,7 @@ public class AkkaApp {
                 })),
                 post(() -> entity(Jackson.unmarshaller(TestPackage.class), msg -> {
                     router.tell(msg, ActorRef.noSender());
-                    return complete("Execute!");
+                    return complete(HAPPY_ANSWER);
                 })
         ));
     }
