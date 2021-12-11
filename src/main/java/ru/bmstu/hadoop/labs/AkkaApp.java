@@ -36,7 +36,7 @@ public class AkkaApp {
         final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow = AkkaApp.createRoute().flow(system, materializer);
         final CompletionStage<ServerBinding> binding = http.bindAndHandle(
                 routeFlow,
-                ConnectHttp.toHost("localhost", DEFAULT_PORT),
+                ConnectHttp.toHost(HOST, DEFAULT_PORT),
                 materializer
         );
         System.out.println(SERVER_ONLINE + DEFAULT_PORT);

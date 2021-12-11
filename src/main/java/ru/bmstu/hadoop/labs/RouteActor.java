@@ -24,7 +24,6 @@ public class RouteActor extends AbstractActor {
 
     {
         storeActor = getContext().actorOf(Props.create(StoreActor.class));
-        getContext().watch(storeActor);
 
         List<Routee> routees = new ArrayList<>();
         for (int i = 0; i < NUMBER_OF_EXECUTERS; i++) {
@@ -40,7 +39,7 @@ public class RouteActor extends AbstractActor {
         return ReceiveBuilder.create()
                 .match(GetRequest.class, msg -> storeActor.tell(msg, sender()))
                 .match(TestPackage.class, this::executeTests)
-                .match(Terminated.class, this::restartTeminatedExecuters)
+                .match(Terminated.class, this::restartTerminatedExecutor)
                 .build();
     }
 
@@ -53,11 +52,10 @@ public class RouteActor extends AbstractActor {
         }
     }
 
-    private void restartTeminatedExecuters(Terminated msg) {
+    private void restartTerminatedExecutor(Terminated msg) {
         router = router.removeRoutee(msg.actor());
         ActorRef executeActor = getContext().actorOf(Props.create(ExecuteTestActor.class));
         getContext().watch(executeActor);
         router = router.addRoutee(new ActorRefRoutee(executeActor));
     }
-
 }

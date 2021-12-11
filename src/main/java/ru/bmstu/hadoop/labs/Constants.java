@@ -7,5 +7,5 @@ public class Constants {
     public static int NUMBER_OF_EXECUTERS = 5;
     public static String HAPPY_ANSWER = "Execute!!!";
     public static String SERVER_ONLINE = "Server online at http://localhost:";
-
+    public static String HOST = "localhost";
 }

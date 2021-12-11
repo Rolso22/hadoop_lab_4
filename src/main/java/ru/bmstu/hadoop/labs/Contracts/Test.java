@@ -11,6 +11,7 @@ public class Test {
     public String result;
     @JsonProperty("params")
     public List<Integer> params;
+
     private String fnName;
     private String jsScript;
     private String packageId;
